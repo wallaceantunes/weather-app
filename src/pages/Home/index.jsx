@@ -1,11 +1,16 @@
+import { useState } from "react"
 import { VscDebugRestart, VscLocation } from "react-icons/vsc"
 import solImg from '../../assets/imgs/sol.png'
+import { ModalBottom, ModalCenter } from "../../components/Modal"
 
 export const Home = () => {
+    const [showModalCenter, setShowModalCenter] = useState(false)
+    const [showModalBottom, setShowModalBottom] = useState(true)
+
     return <>
         <div className="flex font-semibold items-center">
-            <div className="flex-none text-2xl cursor-pointer" onClick={() => alert('Change city')}>
-                <VscLocation />
+            <div className="flex-none text-2xl cursor-pointer">
+                <VscLocation onClick={() => setShowModalCenter(true)}/>
             </div>
             <div className="flex-1 text-center text-xl">Ensolarado</div>
             <div className="flex-none text-right text-2xl cursor-pointer" onClick={() => alert('Reload')}>
@@ -28,5 +33,8 @@ export const Home = () => {
             </div>
             <div className="flex-1 text-2xl text-center font-medium">Caçapava</div>
         </div>
+        <ModalCenter showModal={showModalCenter} setShowModal={setShowModalCenter} />
+        <ModalBottom showModal={showModalBottom} setShowModal={setShowModalBottom} />
+
     </>
 }
