@@ -1,11 +1,11 @@
 import { useState } from "react"
-import { VscDebugRestart, VscLocation } from "react-icons/vsc"
+import { VscChevronUp, VscDebugRestart, VscLocation } from "react-icons/vsc"
 import solImg from '../../assets/imgs/sol.png'
 import { ModalBottom, ModalCenter } from "../../components/Modal"
 
 export const Home = () => {
     const [showModalCenter, setShowModalCenter] = useState(false)
-    const [showModalBottom, setShowModalBottom] = useState(true)
+    const [showModalBottom, setShowModalBottom] = useState(false)
 
     return <>
         <div className="flex font-semibold items-center">
@@ -28,10 +28,13 @@ export const Home = () => {
                 />
             </div>
             <div className="flex-1 text-2xl text-center font-medium">04/02/2022</div>
-            <div className="flex-1 text-8xl text-center font-semibold">25
-                <span className="text-lg fixed" style={{marginTop: '8px'}}>°C</span>
-            </div>
+            <div className="flex-1 text-8xl text-center font-semibold">25</div>
             <div className="flex-1 text-2xl text-center font-medium">Caçapava</div>
+        </div>
+        <div className="flex fixed bottom-0 left-0 right-0 text-5xl w-full">
+            <div className="flex-1 text-center">
+                <VscChevronUp className="inline cursor-pointer" onClick={() => setShowModalBottom(true)}/>
+            </div>
         </div>
         <ModalCenter showModal={showModalCenter} setShowModal={setShowModalCenter} />
         <ModalBottom showModal={showModalBottom} setShowModal={setShowModalBottom} />
