@@ -1,5 +1,5 @@
 export const Select = ({label}) => {
-    return  <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+    return  <div className="w-full px-3 mb-6">
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
             {label}
         </label>
