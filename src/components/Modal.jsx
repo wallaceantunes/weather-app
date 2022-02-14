@@ -1,5 +1,6 @@
-import { VscDebugRestart } from "react-icons/vsc"
-import { Select } from "./Select"
+import { VscArrowSmallDown, VscArrowSmallUp } from "react-icons/vsc";
+import { WiRaindrop, WiStrongWind } from "react-icons/wi";
+import { Select } from "./Select";
 
 export const ModalCenter = ({showModal, setShowModal}) => {
     return <>
@@ -54,7 +55,7 @@ export const ModalCenter = ({showModal, setShowModal}) => {
 }
 
 
-export const ModalBottom = ({showModal, setShowModal}) => {
+export const ModalBottom = ({showModal, setShowModal, weather}) => {
     return <>
         {showModal ? (
             <>
@@ -81,10 +82,16 @@ export const ModalBottom = ({showModal, setShowModal}) => {
                     {/*body*/}
                     <div className="relative p-6 flex-auto flex-row">
                         <div className="flex-1">
-                            <VscDebugRestart className="inline"/> <span>item 1</span>
+                            <VscArrowSmallUp className="inline text-3xl" /> - {(weather.main.temp_max - 273.15).toFixed(0)} °C
                         </div>
                         <div className="flex-1">
-                            <VscDebugRestart className="inline"/> <span>item 2</span>
+                            <VscArrowSmallDown className="inline text-3xl" /> - {(weather.main.temp_min - 273.15).toFixed(0)} °C
+                        </div>
+                        <div className="flex-1">
+                            <WiRaindrop className="inline text-3xl" /> - {weather.main.humidity} %
+                        </div>
+                        <div className="flex-1">
+                            <WiStrongWind className="inline text-3xl" /> - {weather.wind.speed} m/s
                         </div>
                     </div>
                     {/* footer
