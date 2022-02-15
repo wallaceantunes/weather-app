@@ -2,7 +2,7 @@ import { VscArrowSmallDown, VscArrowSmallUp } from "react-icons/vsc";
 import { WiRaindrop, WiStrongWind } from "react-icons/wi";
 import { Select } from "./Select";
 
-export const ModalCenter = ({showModal, setShowModal}) => {
+export const ModalCenter = ({showModal, setShowModal, ufs, cities}) => {
     return <>
         {showModal ? (
             <>
@@ -29,10 +29,10 @@ export const ModalCenter = ({showModal, setShowModal}) => {
                     {/*body*/}
                     <div className="relative p-6 flex-auto flex-row">
                         <div className="flex-1">
-                            <Select label="Estado"/>
+                            <Select label="Estado" options={ufs} name="sigla" value="id" />
                         </div>
                         <div className="flex-1">
-                            <Select label="Cidade"/>
+                            <Select label="Cidade" options={cities} name="nome" value="codigo_ibge" />
                         </div>
                     </div>
                     {/*footer*/}
