@@ -1,7 +1,20 @@
-import { VscDebugRestart } from "react-icons/vsc"
-import { Select } from "./Select"
+import { VscArrowSmallDown, VscArrowSmallUp } from "react-icons/vsc";
+import { WiRaindrop, WiStrongWind } from "react-icons/wi";
+import { Select } from "./Select";
 
-export const ModalCenter = ({showModal, setShowModal}) => {
+export const ModalCenter = ({showModal, setShowModal, ufs, cities, setUf, setCity}) => {
+    const getUf = (ufSelected) => {
+        setUf(ufSelected)
+    }
+    
+    const getCity = (citySelected) => {
+        const city = cities.find(ele => ele.codigo_ibge === Number(citySelected))
+        setCity({
+            lat: city.latitude,
+            lon: city.longitude
+        })
+    }
+    
     return <>
         {showModal ? (
             <>
@@ -28,10 +41,10 @@ export const ModalCenter = ({showModal, setShowModal}) => {
                     {/*body*/}
                     <div className="relative p-6 flex-auto flex-row">
                         <div className="flex-1">
-                            <Select label="Estado"/>
+                            <Select label="Estado" options={ufs} name="sigla" value="id" onChange={getUf}/>
                         </div>
                         <div className="flex-1">
-                            <Select label="Cidade"/>
+                            <Select label="Cidade" options={cities} name="nome" value="codigo_ibge" onChange={getCity} />
                         </div>
                     </div>
                     {/*footer*/}
@@ -54,7 +67,7 @@ export const ModalCenter = ({showModal, setShowModal}) => {
 }
 
 
-export const ModalBottom = ({showModal, setShowModal}) => {
+export const ModalBottom = ({showModal, setShowModal, weather}) => {
     return <>
         {showModal ? (
             <>
@@ -81,10 +94,16 @@ export const ModalBottom = ({showModal, setShowModal}) => {
                     {/*body*/}
                     <div className="relative p-6 flex-auto flex-row">
                         <div className="flex-1">
-                            <VscDebugRestart className="inline"/> <span>item 1</span>
+                            <VscArrowSmallUp className="inline text-3xl" /> - {(weather.main.temp_max - 273.15).toFixed(0)} °C
                         </div>
                         <div className="flex-1">
-                            <VscDebugRestart className="inline"/> <span>item 2</span>
+                            <VscArrowSmallDown className="inline text-3xl" /> - {(weather.main.temp_min - 273.15).toFixed(0)} °C
+                        </div>
+                        <div className="flex-1">
+                            <WiRaindrop className="inline text-3xl" /> - {weather.main.humidity} %
+                        </div>
+                        <div className="flex-1">
+                            <WiStrongWind className="inline text-3xl" /> - {weather.wind.speed} m/s
                         </div>
                     </div>
                     {/* footer
