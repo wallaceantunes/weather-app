@@ -2,7 +2,19 @@ import { VscArrowSmallDown, VscArrowSmallUp } from "react-icons/vsc";
 import { WiRaindrop, WiStrongWind } from "react-icons/wi";
 import { Select } from "./Select";
 
-export const ModalCenter = ({showModal, setShowModal, ufs, cities}) => {
+export const ModalCenter = ({showModal, setShowModal, ufs, cities, setUf, setCity}) => {
+    const getUf = (ufSelected) => {
+        setUf(ufSelected)
+    }
+    
+    const getCity = (citySelected) => {
+        const city = cities.find(ele => ele.codigo_ibge === Number(citySelected))
+        setCity({
+            lat: city.latitude,
+            lon: city.longitude
+        })
+    }
+    
     return <>
         {showModal ? (
             <>
@@ -29,10 +41,10 @@ export const ModalCenter = ({showModal, setShowModal, ufs, cities}) => {
                     {/*body*/}
                     <div className="relative p-6 flex-auto flex-row">
                         <div className="flex-1">
-                            <Select label="Estado" options={ufs} name="sigla" value="id" />
+                            <Select label="Estado" options={ufs} name="sigla" value="id" onChange={getUf}/>
                         </div>
                         <div className="flex-1">
-                            <Select label="Cidade" options={cities} name="nome" value="codigo_ibge" />
+                            <Select label="Cidade" options={cities} name="nome" value="codigo_ibge" onChange={getCity} />
                         </div>
                     </div>
                     {/*footer*/}
